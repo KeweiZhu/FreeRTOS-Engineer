@@ -32,6 +32,10 @@ static TaskHandle_t OfflineCheckTask_Handler; //任务句柄
 #define CHASSIS_STK_SIZE 512 //任务堆栈
 static TaskHandle_t ChassisTask_Handler; //任务句柄
 
+#define ReturnState_TASK_PRIO 17  //任务优先级
+#define ReturnState_STK_SIZE 512 //任务堆栈
+static TaskHandle_t ReturnStateTask_Handler; //任务句柄
+
 void start_task(void *pvParameters)
 {
   taskENTER_CRITICAL();
@@ -63,6 +67,12 @@ xTaskCreate((TaskFunction_t)Chassis_task,          //任务函数
                 (void *)NULL,                        //传递给任务函数的参数
                 (UBaseType_t)CHASSIS_TASK_PRIO,        //任务优先级
                 (TaskHandle_t *)&ChassisTask_Handler); //任务句柄
+xTaskCreate((TaskFunction_t) ReturnState,          //任务函数
+                (const char *)"ReturnState",          //任务名称
+                (uint16_t)ReturnState_STK_SIZE,            //任务堆栈大小
+                (void *)NULL,                        //传递给任务函数的参数
+                (UBaseType_t)ReturnState_TASK_PRIO,        //任务优先级
+                (TaskHandle_t *)&ReturnStateTask_Handler); //任务句柄
 	
 	vTaskDelete(StartTask_Handler); //删除开始任务
   taskEXIT_CRITICAL();            //退出临界区

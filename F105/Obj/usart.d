@@ -21,5 +21,5 @@
 .\obj\usart.o: MyLib\remote.h
 .\obj\usart.o: .\user\main.h
 .\obj\usart.o: D:\langya\littlecomputer\keil\ARM\ARMCC\Bin\..\include\string.h
-.\obj\usart.o: MyLib\state_task.h
+.\obj\usart.o: .\user\APP\state_task.h
 .\obj\usart.o: MyLib\algorithmOfCRC.h

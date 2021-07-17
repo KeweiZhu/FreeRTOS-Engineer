@@ -75,23 +75,26 @@ void USART_Config(void)
 		UART_Config(&huart1, 115200,8,USART_StopBits_1,USART_Parity_No,USART_Mode_Tx|USART_Mode_Rx);
 		UART_Config(&huart2,115200,8,USART_StopBits_1,USART_Parity_No,USART_Mode_Tx|USART_Mode_Rx);
 		UART_Config(&huart3,100000,8,USART_StopBits_1,USART_Parity_Even,USART_Mode_Rx);
-//		UART_Config(&huart4,115200,8,USART_StopBits_1,USART_Parity_Even,USART_Mode_Tx|USART_Mode_Rx);
+		UART_Config(&huart4,115200,8,USART_StopBits_1,USART_Parity_No,USART_Mode_Tx|USART_Mode_Rx);
 //		UART_Config(&huart5,115200 ,8,USART_StopBits_1,USART_Parity_Even,USART_Mode_Tx|USART_Mode_Rx);
 
 		USART_ITConfig(USART1,USART_IT_IDLE,ENABLE);
 		USART_ITConfig(USART2,USART_IT_IDLE,ENABLE);
 		USART_ITConfig(USART3,USART_IT_IDLE,ENABLE);
-		USART_ITConfig(UART4,USART_IT_RXNE,ENABLE);
+		USART_ITConfig(UART4,USART_IT_IDLE,ENABLE);
 		USART_ITConfig(UART5,USART_IT_RXNE,ENABLE);
 		
 		USART_Cmd(USART1, ENABLE);
 		USART_Cmd(USART2, ENABLE);
 		USART_Cmd(USART3, ENABLE);
+		USART_Cmd(UART4, ENABLE);
 		
 		USART_DMACmd(USART1,USART_DMAReq_Rx,ENABLE);
 		USART_DMACmd(USART1,USART_DMAReq_Tx,ENABLE);
 		USART_DMACmd(USART2,USART_DMAReq_Rx|USART_DMAReq_Tx,ENABLE);
 		USART_DMACmd(USART3,USART_DMAReq_Rx,ENABLE);
+		USART_DMACmd(UART4,USART_DMAReq_Rx,ENABLE);
+		USART_DMACmd(UART4,USART_DMAReq_Tx,ENABLE);
 	}
 	{//NVIC
 		NVIC_Config(USART1_IRQn, 6, 0);
@@ -101,10 +104,10 @@ void USART_Config(void)
 		NVIC_Config(UART5_IRQn, 9, 0);
 	}
 	{//DMA
-		DMA_Config(DMA1_Channel5,(uint32_t)&huart1.UART_BASEx->DR,(uint32_t)JudgeReceiveBuffer,DMA_DIR_PeripheralSRC,JudgeBufBiggestSize,
+		DMA_Config(DMA1_Channel5,(uint32_t)&huart1.UART_BASEx->DR,(uint32_t)uart1_RxBuffer,DMA_DIR_PeripheralSRC,JudgeBufBiggestSize,
 		           DMA_PeripheralInc_Disable,DMA_MemoryInc_Enable,DMA_PeripheralDataSize_Byte,DMA_MemoryDataSize_Byte,
                    DMA_Mode_Circular,DMA_Priority_VeryHigh,DMA_M2M_Disable);
-	  DMA_Config(DMA1_Channel4,(uint32_t)&huart1.UART_BASEx->DR,(uint32_t)JudegeSend,DMA_DIR_PeripheralDST,28,
+	  DMA_Config(DMA1_Channel4,(uint32_t)&huart1.UART_BASEx->DR,(uint32_t)uart1_TxBuffer,DMA_DIR_PeripheralDST,28,
 		           DMA_PeripheralInc_Disable,DMA_MemoryInc_Enable,DMA_PeripheralDataSize_Byte,DMA_MemoryDataSize_Byte,
                    DMA_Mode_Normal,DMA_Priority_VeryHigh,DMA_M2M_Disable);
 		DMA_Config(DMA1_Channel6,(uint32_t)&huart2.UART_BASEx->DR,(uint32_t)uart2_RxBuffer,DMA_DIR_PeripheralSRC,8,
@@ -116,6 +119,12 @@ void USART_Config(void)
 		DMA_Config(DMA1_Channel3,(uint32_t)&huart3.UART_BASEx->DR,(uint32_t)uart3_RxBuffer,DMA_DIR_PeripheralSRC,30,
 		           DMA_PeripheralInc_Disable,DMA_MemoryInc_Enable,DMA_PeripheralDataSize_Byte,DMA_MemoryDataSize_Byte,
                    DMA_Mode_Circular,DMA_Priority_VeryHigh,DMA_M2M_Disable);
+		DMA_Config(DMA2_Channel3,(uint32_t)&huart4.UART_BASEx->DR,(uint32_t)JudgeReceiveBuffer,DMA_DIR_PeripheralSRC,JudgeBufBiggestSize,
+		           DMA_PeripheralInc_Disable,DMA_MemoryInc_Enable,DMA_PeripheralDataSize_Byte,DMA_MemoryDataSize_Byte,
+                   DMA_Mode_Circular,DMA_Priority_VeryHigh,DMA_M2M_Disable);
+	  DMA_Config(DMA2_Channel5,(uint32_t)&huart4.UART_BASEx->DR,(uint32_t)JudegeSend,DMA_DIR_PeripheralDST,28,
+		           DMA_PeripheralInc_Disable,DMA_MemoryInc_Enable,DMA_PeripheralDataSize_Byte,DMA_MemoryDataSize_Byte,
+                   DMA_Mode_Normal,DMA_Priority_VeryHigh,DMA_M2M_Disable);
 		//U1 TX
 		DMA_ITConfig(DMA1_Channel4,DMA_IT_TC,ENABLE);
 		DMA_Cmd(DMA1_Channel4,DISABLE);    
@@ -133,7 +142,15 @@ void USART_Config(void)
 		DMA_Cmd(DMA1_Channel6,ENABLE);
 		NVIC_Config(DMA1_Channel6_IRQn, 7, 0);
 		//U3 RX
-		DMA_Cmd(DMA1_Channel3,ENABLE);    
+		DMA_Cmd(DMA1_Channel3,ENABLE);   
+		//U4 TX
+		DMA_ITConfig(DMA2_Channel5,DMA_IT_TC,ENABLE);
+		DMA_Cmd(DMA2_Channel5,DISABLE);    
+		NVIC_Config(DMA2_Channel5_IRQn, 7, 2);
+		//U4 RX
+		DMA_ITConfig(DMA2_Channel3,DMA_IT_TC,ENABLE);
+		DMA_Cmd(DMA2_Channel3,ENABLE);    
+		NVIC_Config(DMA2_Channel3_IRQn, 1, 0);		
 	}
 }
 /**
@@ -207,39 +224,39 @@ void UART_GPIO_TX_Config(UART_HandleTypeDef *uart,
   * @param  None      
   * @retval None
   */
-void USART1_IRQHandler(void)
+void UART4_IRQHandler(void)
 {   
-	if (USART_GetITStatus(USART1, USART_IT_IDLE) != RESET)
+	if (USART_GetITStatus(UART4, USART_IT_IDLE) != RESET)
 	{
-		(void)USART1->SR;
-		(void)USART1->DR;
-		DMA_Cmd(DMA1_Channel5,DISABLE);
-		DataLen=JudgeBufBiggestSize-DMA_GetCurrDataCounter(DMA1_Channel5);
+		(void)UART4->SR;
+		(void)UART4->DR;
+		DMA_Cmd(DMA2_Channel3,DISABLE);
+		DataLen=JudgeBufBiggestSize-DMA_GetCurrDataCounter(DMA2_Channel3);
 		JudgeBuffReceive(JudgeReceiveBuffer,0);
 
-		DMA_SetCurrDataCounter(DMA1_Channel5,JudgeBufBiggestSize);
-		USART_ClearITPendingBit(USART1,USART_IT_IDLE);
-		USART_ClearFlag(USART1,USART_FLAG_IDLE);
-		DMA_Cmd(DMA1_Channel5,ENABLE);
+		DMA_SetCurrDataCounter(DMA2_Channel3,JudgeBufBiggestSize);
+		USART_ClearITPendingBit(UART4,USART_IT_IDLE);
+		USART_ClearFlag(UART4,USART_FLAG_IDLE);
+		DMA_Cmd(DMA2_Channel3,ENABLE);
 	}	
 }
-void DMA1_Channel5_IRQHandler(void)
+void DMA2_Channel3_IRQHandler(void)
 {
-	if(DMA_GetITStatus(DMA1_FLAG_TC5))
+	if(DMA_GetITStatus(DMA2_FLAG_TC3))
 	{
-		DMA_ClearFlag(DMA1_FLAG_TC5);
-		DMA_ClearITPendingBit(DMA1_FLAG_TC5);
+		DMA_ClearFlag(DMA2_FLAG_TC3);
+		DMA_ClearITPendingBit(DMA2_FLAG_TC3);
 		JudgeBuffReceive(JudgeReceiveBuffer,0);
 	}
 }
-void DMA1_Channel4_IRQHandler(void)
+void DMA2_Channel5_IRQHandler(void)
 {
-	if(DMA_GetITStatus(DMA1_FLAG_TC4)!=RESET)
+	if(DMA_GetITStatus(DMA2_IT_TC5)!=RESET)
 	{
-		DMA_Cmd(DMA1_Channel4, DISABLE);
+		DMA_ClearFlag(DMA2_FLAG_TC5);
+		DMA_Cmd(DMA2_Channel5, DISABLE);
 		DMA_SetCurrDataCounter(DMA1_Channel4, 28);
-		DMA_ClearFlag(DMA1_FLAG_TC4);
-	
+		DMA_Cmd(DMA2_Channel5, ENABLE);
 		
 	}	
 }
@@ -358,11 +375,11 @@ void USART3_IRQHandler(void)
   * @param  None      
   * @retval None
   */
-void UART4_IRQHandler(void)
+void USART1_IRQHandler(void)
 {
-	if(USART_GetITStatus(UART4,USART_IT_RXNE)!=RESET)  
+	if(USART_GetITStatus(USART1,USART_IT_IDLE)!=RESET)  
 	{  
-		USART_ClearITPendingBit(UART4,USART_IT_RXNE);//清除发送完成标志位
+		USART_ClearITPendingBit(USART1,USART_IT_IDLE);//清除空闲标志位
 	} 
 }
 
@@ -488,7 +505,7 @@ void JudgeSendFill(float data1,float data2,float data3 ,unsigned char mask)
 }
 int LandingState,manual_get_bullet_State,manual_land_State;
 char modeState;
-void ReturnState(void)
+void ReturnState(void *pvParameters)
 {
 	LandingState = g_flag.landing_state;
 	manual_get_bullet_State = key.flag_manual_get_buttel_mode;

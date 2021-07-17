@@ -24,5 +24,5 @@ void switch_mode(void);
 void  key_control_Init(void);
 void Mode_Switch_task(void *pvParameters);
 void  Offline_Check_task(void *pvParameters);
-
+void ReturnState(void *pvParameters);
 #endif

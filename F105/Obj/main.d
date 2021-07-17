@@ -37,6 +37,6 @@
 .\obj\main.o: .\MyLib\pid.h
 .\obj\main.o: .\MyLib\delay.h
 .\obj\main.o: .\MyLib\remote.h
-.\obj\main.o: .\MyLib\state_task.h
+.\obj\main.o: .\user\APP\state_task.h
 .\obj\main.o: .\MyLib\chassis_task.h
 .\obj\main.o: .\MyLib\tim.h

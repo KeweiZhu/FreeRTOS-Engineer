@@ -23,6 +23,6 @@ void UART_GPIO_TX_Config(UART_HandleTypeDef *uart,
 	                uint16_t GPIO_PinTx,GPIO_TypeDef *GPIOTx);
 void master2slave_task(void);
 void JudgeBuffReceive(unsigned char ReceiveBuffer[],uint16_t DataLen);
-void ReturnState(void);
+void ReturnState(void *pvParameters);
 					
 #endif
