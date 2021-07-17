@@ -1,11 +1,4 @@
-#include "drv_dma.h"
-#include "nvic.h"
 #include "usart.h"
-#include "remote.h"
-#include "main.h"
-#include "state_task.h"
-#include "string.h"
-#include "algorithmOfCRC.h"
 
 #define U2_TX_LEN   11
 #define JudgeBufBiggestSize 34

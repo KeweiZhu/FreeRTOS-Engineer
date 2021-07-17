@@ -21,10 +21,7 @@ CAN2控制底盘移动以及陀螺仪数据接收，ID号如下：
 
 ***************************************************************************************/
 
-#include "main.h"
 #include "can2.h"
-#include "pid.h"
-#include "string.h"
 /*NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4)*/
 
 float yaw_angle;

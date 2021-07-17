@@ -14,19 +14,7 @@ s1（右）：在上{s2（左）在下：上升模式
                s2（左）在中：手动取弹模式
                s2（左）在上：自动取弹模式}
 ***************************************************************************************/
-
-#include "main.h"
-#include "remote.h"
-#include "pid.h"
-#include "can2.h"
 #include "state_task.h"
-
-
-#include "FreeRTOSConfig.h"
-#include "FreeRTOS.h"
-#include "task.h"
-#include "tim.h"
-
 
 key_control  key;
 uint32_t  Offline_Check_high_water;

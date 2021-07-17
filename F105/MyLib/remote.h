@@ -1,5 +1,6 @@
 #ifndef _REMOTE_H_
 #define _REMOTE_H_
+#include "main.h"
 
 /***********RC***********/
 typedef struct{

@@ -1,5 +1,6 @@
 #ifndef _CHASSIS_TASK_H_
 #define _CHASSIS_TASK_H_
+#include "main.h"
 
 void chassis_vel_pid_init(float p, float i, float d, float i_max);
 void chassis_task(void);

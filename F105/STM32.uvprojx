@@ -365,7 +365,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_CL, USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>.\FWlib\inc;.\user;.\Hardware;.\MyLib;.\FreeRTOS\include;.\FreeRTOS\port\MemMang;.\FreeRTOS\port\RVDS\ARM_CM3;.\FreeRTOS\src;.\user\APP</IncludePath>
+              <IncludePath>.\user;.\Algorithm;.\MyLib;.\FreeRTOS\include;.\FreeRTOS\port\MemMang;.\FreeRTOS\port\RVDS\ARM_CM3;.\FreeRTOS\src;.\TASK;.\Library\inc;.\startup</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -433,6 +433,46 @@
               <FileType>5</FileType>
               <FilePath>.\user\FreeRTOSConfig.h</FilePath>
             </File>
+            <File>
+              <FileName>system_stm32f10x.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\user\system_stm32f10x.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>TASK</GroupName>
+          <Files>
+            <File>
+              <FileName>chassis_task.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TASK\chassis_task.c</FilePath>
+            </File>
+            <File>
+              <FileName>state_task.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TASK\state_task.c</FilePath>
+            </File>
+            <File>
+              <FileName>start_task.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TASK\start_task.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Algorithm</GroupName>
+          <Files>
+            <File>
+              <FileName>pid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Algorithm\pid.c</FilePath>
+            </File>
+            <File>
+              <FileName>algorithmOfCRC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Algorithm\algorithmOfCRC.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -479,69 +519,34 @@
               <FilePath>.\MyLib\remote.c</FilePath>
             </File>
             <File>
-              <FileName>pid.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\MyLib\pid.c</FilePath>
-            </File>
-            <File>
-              <FileName>algorithmOfCRC.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\MyLib\algorithmOfCRC.c</FilePath>
-            </File>
-            <File>
               <FileName>tim.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\MyLib\tim.c</FilePath>
             </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>StdPeriph_Drive</GroupName>
-          <Files>
             <File>
-              <FileName>misc.c</FileName>
+              <FileName>usart1.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\FWlib\SRC\misc.c</FilePath>
+              <FilePath>.\MyLib\usart1.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f10x_rcc.c</FileName>
+              <FileName>usart2.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\FWlib\SRC\stm32f10x_rcc.c</FilePath>
+              <FilePath>.\MyLib\usart2.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f10x_gpio.c</FileName>
+              <FileName>usart3.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\FWlib\SRC\stm32f10x_gpio.c</FilePath>
+              <FilePath>.\MyLib\usart3.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f10x_can.c</FileName>
+              <FileName>uart4.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\FWlib\SRC\stm32f10x_can.c</FilePath>
+              <FilePath>.\MyLib\uart4.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f10x_tim.c</FileName>
+              <FileName>uart5.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\FWlib\SRC\stm32f10x_tim.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_exti.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\FWlib\SRC\stm32f10x_exti.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_dma.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\FWlib\SRC\stm32f10x_dma.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\FWlib\SRC\stm32f10x_usart.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32f10x_adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\FWlib\SRC\stm32f10x_adc.c</FilePath>
+              <FilePath>.\MyLib\uart5.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -553,10 +558,125 @@
               <FileType>1</FileType>
               <FilePath>.\user\core_cm3.c</FilePath>
             </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Library</GroupName>
+          <Files>
             <File>
-              <FileName>system_stm32f10x.c</FileName>
+              <FileName>misc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\user\system_stm32f10x.c</FilePath>
+              <FilePath>.\Library\SRC\misc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\SRC\stm32f10x_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_can.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\SRC\stm32f10x_can.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\SRC\stm32f10x_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_exti.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\SRC\stm32f10x_exti.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_gpio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\SRC\stm32f10x_gpio.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_rcc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\SRC\stm32f10x_rcc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\SRC\stm32f10x_tim.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\SRC\stm32f10x_usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_bkp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\SRC\stm32f10x_bkp.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_cec.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\SRC\stm32f10x_cec.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_crc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\SRC\stm32f10x_crc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_dac.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\SRC\stm32f10x_dac.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_dbgmcu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\SRC\stm32f10x_dbgmcu.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\SRC\stm32f10x_flash.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_fsmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\SRC\stm32f10x_fsmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\SRC\stm32f10x_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_iwdg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\SRC\stm32f10x_iwdg.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_pwr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\SRC\stm32f10x_pwr.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_rtc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\SRC\stm32f10x_rtc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_sdio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\SRC\stm32f10x_sdio.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\SRC\stm32f10x_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_wwdg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Library\SRC\stm32f10x_wwdg.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -607,26 +727,6 @@
               <FileName>port.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\FreeRTOS\port\RVDS\ARM_CM3\port.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>APP</GroupName>
-          <Files>
-            <File>
-              <FileName>start_task.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\user\APP\start_task.c</FilePath>
-            </File>
-            <File>
-              <FileName>state_task.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\user\APP\state_task.c</FilePath>
-            </File>
-            <File>
-              <FileName>chassis_task.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\MyLib\chassis_task.c</FilePath>
             </File>
           </Files>
         </Group>

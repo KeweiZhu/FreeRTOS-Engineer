@@ -1,13 +1,5 @@
 #include "start_task.h"
 
-#include "main.h"
-#include "FreeRTOSConfig.h"
-#include "FreeRTOS.h"
-#include "task.h"
-#include "tim.h"
-#include "state_task.h"
-#include "chassis_task.h"
-
 uint32_t CPU_high_water;
 
 /*任务优先级数值越低，优先级越低*/

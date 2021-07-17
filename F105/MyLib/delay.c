@@ -1,4 +1,3 @@
-#include "main.h"
 #include "delay.h"
 
 int delayus_cnt;

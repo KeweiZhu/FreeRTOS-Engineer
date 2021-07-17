@@ -1,10 +1,39 @@
 #ifndef __MAIN_H_
 #define __MAIN_H_
 
+/*Library*/
 #include "stm32f10x.h"
-#include "nvic.h"
-#include "drv_dma.h"
+#include "misc.h"
 #include "string.h"
+#include "stm32f10x_dma.h"
+#include "stm32f10x_tim.h"
+#include "stm32f10x_dac.h"
+#include "stm32f10x_adc.h"
+#include "stm32f10x_i2c.h"
+
+/*Mylib*/
+#include "can1.h"
+#include "can2.h"
+#include "led.h"
+#include "usart.h"
+#include "delay.h"
+#include "drv_dma.h"
+#include "nvic.h"
+#include "remote.h"
+#include "tim.h"
+
+/*Algorithm*/
+#include "pid.h"
+#include "algorithmOfCRC.h"
+
+/*TASK*/
+#include "start_task.h"
+#include "state_task.h"
+#include "chassis_task.h"
+
+/*FreeRTOS*/
+#include "FreeRTOS.h"
+#include "task.h"
 
 /*******************ºê¶¨Òå*************************/
 #define ABS(x) ((x)>0? (x):(-(x))) 

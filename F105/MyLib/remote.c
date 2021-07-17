@@ -1,5 +1,4 @@
 #include "remote.h"
-#include "main.h"
 
 rc_ctrl_t rc_ctrl, rc_ctrl_last;
 

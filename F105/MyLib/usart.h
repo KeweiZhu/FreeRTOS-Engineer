@@ -1,7 +1,7 @@
 #ifndef _USART_H_
 #define _USART_H_
 
-#include "stm32f10x.h"
+#include "main.h"
 
 #define RX_USART3_BUFFER 30
 

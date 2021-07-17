@@ -1,16 +1,4 @@
-#include "main.h"
-#include "pid.h"
-#include "can1.h"
-#include "can2.h"
-#include "remote.h"
 #include "chassis_task.h"
-
-#include "FreeRTOSConfig.h"
-#include "FreeRTOS.h"
-#include "task.h"
-#include "tim.h"
-
-
 
 int vx, vy, vw;
 int vx_set, vy_set, vw_set;
@@ -73,14 +61,10 @@ void chassis_power_off(void)
 			vw：旋转速度
   * @retval None
   */
-int test_chassis_current[4];                 //only for debug to watch
-
-/*
 //用于底盘PID调试
+int test_chassis_current[4];                 //only for debug to watch
 //float SetPoint = 0;
 //short realspeed;
-*/
-
 void chassis_cal(int vx, int vy, int vw)
 {
 	int i = 0;
@@ -283,6 +267,7 @@ void w_offset(float speed)
 		vw = PID_Calc(&chassis_vel_follow_pid, get_gz());
 	chassis_cal(0, 0, vw);
 }
+
 void w_turn(float speed)
 {
 	chassis_pos_follow_pid.SetPoint -= speed;
@@ -291,6 +276,11 @@ void w_turn(float speed)
 	//chassis_cal(0, 0, vw);
 }
 
+/**
+  * @brief  底盘运动任务
+  * @param  None
+  * @retval None
+  */		
 void  Chassis_task(void *pvParameters)
 {
 		while(1){

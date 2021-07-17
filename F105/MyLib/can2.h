@@ -1,5 +1,6 @@
 #ifndef _CAN2_H_
 #define _CAN2_H_
+#include "main.h"
 
 void CAN2_Config(void);
 float get_yaw_angle(void);

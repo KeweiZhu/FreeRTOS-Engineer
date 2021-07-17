@@ -1,7 +1,4 @@
-#include "stm32f10x.h"
-#include "main.h"
 #include "tim.h"
-
 
 void TIM4_Init(void)
 {
