@@ -1,0 +1,13 @@
+.\obj\u3_remote.o: MyLib\u3_remote.c
+.\obj\u3_remote.o: MyLib\u3_remote.h
+.\obj\u3_remote.o: .\user\stm32f10x.h
+.\obj\u3_remote.o: .\user\core_cm3.h
+.\obj\u3_remote.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\obj\u3_remote.o: .\user\system_stm32f10x.h
+.\obj\u3_remote.o: .\user\stm32f10x_conf.h
+.\obj\u3_remote.o: .\FWlib\inc\stm32f10x_can.h
+.\obj\u3_remote.o: .\user\stm32f10x.h
+.\obj\u3_remote.o: .\FWlib\inc\stm32f10x_flash.h
+.\obj\u3_remote.o: .\FWlib\inc\stm32f10x_gpio.h
+.\obj\u3_remote.o: .\FWlib\inc\stm32f10x_rcc.h
+.\obj\u3_remote.o: .\FWlib\inc\stm32f10x_usart.h
