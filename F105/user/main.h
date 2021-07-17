@@ -15,12 +15,18 @@
 #include "can1.h"
 #include "can2.h"
 #include "led.h"
-#include "usart.h"
+	//#include "usart.h"
 #include "delay.h"
 #include "drv_dma.h"
 #include "nvic.h"
 #include "remote.h"
 #include "tim.h"
+#include "usart1.h"
+#include "usart2.h"
+#include "usart3.h"
+#include "uart4.h"
+#include "uart5.h"
+#include "JudgeSend.h"
 
 /*Algorithm*/
 #include "pid.h"
@@ -126,6 +132,20 @@
 #define PITCH_DOWN       ServoGimbal_pitch(2700); 
 #define PITCH_UP         ServoGimbal_pitch(5800); 
 /*******************结构体定义*************************/
+typedef union
+{
+	float fdata;			//4?
+	unsigned long idata;
+}
+FloatLongType;
+
+typedef union
+{
+	float fdata;			//4?
+	unsigned char idata[4];
+}
+FloatCharType;
+
 typedef struct
 {
     s16 angle;					//角度返回值

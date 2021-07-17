@@ -489,11 +489,6 @@
               <FilePath>.\MyLib\can2.c</FilePath>
             </File>
             <File>
-              <FileName>usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\MyLib\usart.c</FilePath>
-            </File>
-            <File>
               <FileName>led.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\MyLib\led.c</FilePath>
@@ -524,6 +519,11 @@
               <FilePath>.\MyLib\tim.c</FilePath>
             </File>
             <File>
+              <FileName>usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\MyLib\usart.c</FilePath>
+            </File>
+            <File>
               <FileName>usart1.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\MyLib\usart1.c</FilePath>
@@ -547,6 +547,11 @@
               <FileName>uart5.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\MyLib\uart5.c</FilePath>
+            </File>
+            <File>
+              <FileName>JudgeSend.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\MyLib\JudgeSend.c</FilePath>
             </File>
           </Files>
         </Group>
