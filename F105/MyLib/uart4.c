@@ -2,7 +2,7 @@
 
 unsigned char JudgeReceiveBuffer[JudgeBufBiggestSize];
 unsigned char JudgeSend[SEND_MAX_SIZE];
-unsigned char SaveBuffer[68];
+unsigned char SaveBuffer[2*JudgeBufBiggestSize];
 tGameInfo JudgeReceive;
 
 /**
