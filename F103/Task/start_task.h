@@ -3,6 +3,5 @@
 #include "main.h"
 void CPU_task(void *pvParameters);
 void startTast(void);
-void LED_task(void *pvParameters);
 
 #endif

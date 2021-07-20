@@ -1,4 +1,5 @@
-#include "main.h"
+#include "delay.h"
+
 int delayms, delayus;
 
 /**

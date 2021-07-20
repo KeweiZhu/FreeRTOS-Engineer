@@ -7,7 +7,7 @@
 .\objects\tasks.o: ..\User\FreeRTOSConfig.h
 .\objects\tasks.o: ..\CM3\stm32f10x.h
 .\objects\tasks.o: ..\CM3\core_cm3.h
-.\objects\tasks.o: ..\CM3\system_stm32f10x.h
+.\objects\tasks.o: ..\User\system_stm32f10x.h
 .\objects\tasks.o: ..\User\stm32f10x_conf.h
 .\objects\tasks.o: ..\Libraries\stm32f10x_adc.h
 .\objects\tasks.o: ..\CM3\stm32f10x.h

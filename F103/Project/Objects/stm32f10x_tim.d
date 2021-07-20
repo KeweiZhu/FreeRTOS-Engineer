@@ -3,7 +3,7 @@
 .\objects\stm32f10x_tim.o: ..\CM3\stm32f10x.h
 .\objects\stm32f10x_tim.o: ..\CM3\core_cm3.h
 .\objects\stm32f10x_tim.o: D:\langya\littlecomputer\keil\ARM\ARMCC\Bin\..\include\stdint.h
-.\objects\stm32f10x_tim.o: ..\CM3\system_stm32f10x.h
+.\objects\stm32f10x_tim.o: ..\User\system_stm32f10x.h
 .\objects\stm32f10x_tim.o: ..\User\stm32f10x_conf.h
 .\objects\stm32f10x_tim.o: ..\Libraries\stm32f10x_adc.h
 .\objects\stm32f10x_tim.o: ..\CM3\stm32f10x.h

@@ -7,6 +7,12 @@
 #include "math.h"
 #include "string.h"
 
+#include "FreeRTOSConfig.h"
+#include "FreeRTOS.h"
+#include "task.h"
+#include "start_task.h" 
+#include "delay.h"
+#include "tim.h"
 
 
  

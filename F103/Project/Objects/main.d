@@ -3,7 +3,7 @@
 .\objects\main.o: ..\CM3\stm32f10x.h
 .\objects\main.o: ..\CM3\core_cm3.h
 .\objects\main.o: D:\langya\littlecomputer\keil\ARM\ARMCC\Bin\..\include\stdint.h
-.\objects\main.o: ..\CM3\system_stm32f10x.h
+.\objects\main.o: ..\User\system_stm32f10x.h
 .\objects\main.o: ..\User\stm32f10x_conf.h
 .\objects\main.o: ..\Libraries\stm32f10x_adc.h
 .\objects\main.o: ..\CM3\stm32f10x.h
@@ -21,9 +21,9 @@
 .\objects\main.o: D:\langya\littlecomputer\keil\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\main.o: D:\langya\littlecomputer\keil\ARM\ARMCC\Bin\..\include\math.h
 .\objects\main.o: D:\langya\littlecomputer\keil\ARM\ARMCC\Bin\..\include\string.h
+.\objects\main.o: ..\User\FreeRTOSConfig.h
 .\objects\main.o: ..\FreeRTOS\include\FreeRTOS.h
 .\objects\main.o: D:\langya\littlecomputer\keil\ARM\ARMCC\Bin\..\include\stddef.h
-.\objects\main.o: ..\User\FreeRTOSConfig.h
 .\objects\main.o: ..\FreeRTOS\include\projdefs.h
 .\objects\main.o: ..\FreeRTOS\include\portable.h
 .\objects\main.o: ..\FreeRTOS\include\deprecated_definitions.h
@@ -31,7 +31,7 @@
 .\objects\main.o: ..\FreeRTOS\include\mpu_wrappers.h
 .\objects\main.o: ..\FreeRTOS\include\task.h
 .\objects\main.o: ..\FreeRTOS\include\list.h
-.\objects\main.o: ..\Hardware\led.h
-.\objects\main.o: ..\User\APP\start_task.h
-.\objects\main.o: ..\Hardware\delay.h
-.\objects\main.o: ..\User\tim.h
+.\objects\main.o: ..\Task\start_task.h
+.\objects\main.o: ..\User\main.h
+.\objects\main.o: ..\MyLib\delay.h
+.\objects\main.o: ..\MyLib\tim.h

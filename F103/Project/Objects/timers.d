@@ -6,7 +6,7 @@
 .\objects\timers.o: ..\User\FreeRTOSConfig.h
 .\objects\timers.o: ..\CM3\stm32f10x.h
 .\objects\timers.o: ..\CM3\core_cm3.h
-.\objects\timers.o: ..\CM3\system_stm32f10x.h
+.\objects\timers.o: ..\User\system_stm32f10x.h
 .\objects\timers.o: ..\User\stm32f10x_conf.h
 .\objects\timers.o: ..\Libraries\stm32f10x_adc.h
 .\objects\timers.o: ..\CM3\stm32f10x.h

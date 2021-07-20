@@ -123,7 +123,7 @@
             <Oh166RecLen>16</Oh166RecLen>
           </OPTHX>
           <Simulator>
-            <UseSimulator>0</UseSimulator>
+            <UseSimulator>1</UseSimulator>
             <LoadApplicationAtStartup>1</LoadApplicationAtStartup>
             <RunToMain>1</RunToMain>
             <RestoreBreakpoints>1</RestoreBreakpoints>
@@ -135,7 +135,7 @@
             <RestoreSysVw>1</RestoreSysVw>
           </Simulator>
           <Target>
-            <UseTarget>1</UseTarget>
+            <UseTarget>0</UseTarget>
             <LoadApplicationAtStartup>1</LoadApplicationAtStartup>
             <RunToMain>1</RunToMain>
             <RestoreBreakpoints>1</RestoreBreakpoints>
@@ -147,7 +147,7 @@
             <RestoreSysVw>1</RestoreSysVw>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>6</TargetSelection>
+          <TargetSelection>4</TargetSelection>
           <SimDlls>
             <CpuDll></CpuDll>
             <CpuDllArguments></CpuDllArguments>
@@ -365,7 +365,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_MD,USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Libraries;..\CM3;..\User;..\Hardware;..\FreeRTOS\src;..\FreeRTOS\port\MemMang;..\FreeRTOS\port\RVDS\ARM_CM3;..\FreeRTOS\include;..\User\APP</IncludePath>
+              <IncludePath>..\Libraries;..\CM3;..\User;..\FreeRTOS\src;..\FreeRTOS\port\MemMang;..\FreeRTOS\port\RVDS\ARM_CM3;..\FreeRTOS\include;..\Task;..\MyLib</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -408,11 +408,6 @@
         <Group>
           <GroupName>CM3</GroupName>
           <Files>
-            <File>
-              <FileName>system_stm32f10x.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\CM3\system_stm32f10x.c</FilePath>
-            </File>
             <File>
               <FileName>core_cm3.c</FileName>
               <FileType>1</FileType>
@@ -513,6 +508,11 @@
               <FileType>5</FileType>
               <FilePath>..\User\FreeRTOSConfig.h</FilePath>
             </File>
+            <File>
+              <FileName>system_stm32f10x.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\system_stm32f10x.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -521,22 +521,24 @@
             <File>
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Hardware\delay.c</FilePath>
+              <FilePath>..\MyLib\delay.c</FilePath>
             </File>
             <File>
               <FileName>tim.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\tim.c</FilePath>
-            </File>
-            <File>
-              <FileName>led.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Hardware\led.c</FilePath>
+              <FilePath>..\MyLib\tim.c</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
           <GroupName>Task</GroupName>
+          <Files>
+            <File>
+              <FileName>start_task.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Task\start_task.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>FreeRTOS/Source</GroupName>
@@ -590,16 +592,6 @@
               <FileName>port.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\FreeRTOS\port\RVDS\ARM_CM3\port.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>APP</GroupName>
-          <Files>
-            <File>
-              <FileName>start_task.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\APP\start_task.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -1,10 +1,5 @@
 #include "start_task.h"
 
-#include "FreeRTOSConfig.h"
-#include "FreeRTOS.h"
-#include "task.h"
-#include "tim.h"
-
 uint32_t CPU_high_water;
 
 /*任务优先级数值越低，优先级越低*/
@@ -17,10 +12,6 @@ static TaskHandle_t StartTask_Handler; //任务句柄
 #define CPU_STK_SIZE 512 //任务堆栈
 static TaskHandle_t CPUTask_Handler; //任务句柄
 
-#define LED_TASK_PRIO 3  //任务优先级
-#define LED_STK_SIZE 512 //任务堆栈
-static TaskHandle_t LEDTask_Handler; //任务句柄
-
 void start_task(void *pvParameters)
 {
   taskENTER_CRITICAL();
@@ -32,28 +23,11 @@ void start_task(void *pvParameters)
                 (UBaseType_t)CPU_TASK_PRIO,        //任务优先级
                 (TaskHandle_t *)&CPUTask_Handler); //任务句柄
 	
-								
-	xTaskCreate((TaskFunction_t)LED_task,          //任务函数
-                (const char *)"LED_task",          //任务名称
-                (uint16_t)LED_STK_SIZE,            //任务堆栈大小
-                (void *)NULL,                        //传递给任务函数的参数
-                (UBaseType_t)LED_TASK_PRIO,        //任务优先级
-                (TaskHandle_t *)&LEDTask_Handler); //任务句柄
-								
 	vTaskDelete(StartTask_Handler); //删除开始任务
   taskEXIT_CRITICAL();            //退出临界区
 }
 
-void LED_task(void *pvParameters)
-{
-		while (1) {
-			GPIO_ResetBits(GPIOC, GPIO_Pin_13);	//点灯
-			vTaskDelay(500); 						//延时函数
 
-			GPIO_SetBits(GPIOC, GPIO_Pin_13);
-			vTaskDelay(500); 
-		}
-}
 
 void CPU_task(void *pvParameters)
 {

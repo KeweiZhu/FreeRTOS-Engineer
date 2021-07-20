@@ -6,7 +6,7 @@
 .\objects\list.o: ..\User\FreeRTOSConfig.h
 .\objects\list.o: ..\CM3\stm32f10x.h
 .\objects\list.o: ..\CM3\core_cm3.h
-.\objects\list.o: ..\CM3\system_stm32f10x.h
+.\objects\list.o: ..\User\system_stm32f10x.h
 .\objects\list.o: ..\User\stm32f10x_conf.h
 .\objects\list.o: ..\Libraries\stm32f10x_adc.h
 .\objects\list.o: ..\CM3\stm32f10x.h

@@ -1,8 +1,8 @@
-.\objects\system_stm32f10x.o: ..\CM3\system_stm32f10x.c
+.\objects\system_stm32f10x.o: ..\User\system_stm32f10x.c
 .\objects\system_stm32f10x.o: ..\CM3\stm32f10x.h
 .\objects\system_stm32f10x.o: ..\CM3\core_cm3.h
 .\objects\system_stm32f10x.o: D:\langya\littlecomputer\keil\ARM\ARMCC\Bin\..\include\stdint.h
-.\objects\system_stm32f10x.o: ..\CM3\system_stm32f10x.h
+.\objects\system_stm32f10x.o: ..\User\system_stm32f10x.h
 .\objects\system_stm32f10x.o: ..\User\stm32f10x_conf.h
 .\objects\system_stm32f10x.o: ..\Libraries\stm32f10x_adc.h
 .\objects\system_stm32f10x.o: ..\CM3\stm32f10x.h

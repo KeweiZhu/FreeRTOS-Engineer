@@ -6,7 +6,7 @@
 .\objects\heap_4.o: ..\User\FreeRTOSConfig.h
 .\objects\heap_4.o: ..\CM3\stm32f10x.h
 .\objects\heap_4.o: ..\CM3\core_cm3.h
-.\objects\heap_4.o: ..\CM3\system_stm32f10x.h
+.\objects\heap_4.o: ..\User\system_stm32f10x.h
 .\objects\heap_4.o: ..\User\stm32f10x_conf.h
 .\objects\heap_4.o: ..\Libraries\stm32f10x_adc.h
 .\objects\heap_4.o: ..\CM3\stm32f10x.h

@@ -3,7 +3,7 @@
 .\objects\misc.o: ..\CM3\stm32f10x.h
 .\objects\misc.o: ..\CM3\core_cm3.h
 .\objects\misc.o: D:\langya\littlecomputer\keil\ARM\ARMCC\Bin\..\include\stdint.h
-.\objects\misc.o: ..\CM3\system_stm32f10x.h
+.\objects\misc.o: ..\User\system_stm32f10x.h
 .\objects\misc.o: ..\User\stm32f10x_conf.h
 .\objects\misc.o: ..\Libraries\stm32f10x_adc.h
 .\objects\misc.o: ..\CM3\stm32f10x.h

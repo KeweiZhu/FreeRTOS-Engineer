@@ -6,7 +6,7 @@
 .\objects\event_groups.o: ..\User\FreeRTOSConfig.h
 .\objects\event_groups.o: ..\CM3\stm32f10x.h
 .\objects\event_groups.o: ..\CM3\core_cm3.h
-.\objects\event_groups.o: ..\CM3\system_stm32f10x.h
+.\objects\event_groups.o: ..\User\system_stm32f10x.h
 .\objects\event_groups.o: ..\User\stm32f10x_conf.h
 .\objects\event_groups.o: ..\Libraries\stm32f10x_adc.h
 .\objects\event_groups.o: ..\CM3\stm32f10x.h

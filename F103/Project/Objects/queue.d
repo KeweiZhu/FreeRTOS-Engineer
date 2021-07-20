@@ -7,7 +7,7 @@
 .\objects\queue.o: ..\User\FreeRTOSConfig.h
 .\objects\queue.o: ..\CM3\stm32f10x.h
 .\objects\queue.o: ..\CM3\core_cm3.h
-.\objects\queue.o: ..\CM3\system_stm32f10x.h
+.\objects\queue.o: ..\User\system_stm32f10x.h
 .\objects\queue.o: ..\User\stm32f10x_conf.h
 .\objects\queue.o: ..\Libraries\stm32f10x_adc.h
 .\objects\queue.o: ..\CM3\stm32f10x.h

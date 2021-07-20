@@ -1,10 +1,10 @@
-.\objects\start_task.o: ..\User\APP\start_task.c
-.\objects\start_task.o: ..\User\APP\start_task.h
+.\objects\start_task.o: ..\Task\start_task.c
+.\objects\start_task.o: ..\Task\start_task.h
 .\objects\start_task.o: ..\User\main.h
 .\objects\start_task.o: ..\CM3\stm32f10x.h
 .\objects\start_task.o: ..\CM3\core_cm3.h
 .\objects\start_task.o: D:\langya\littlecomputer\keil\ARM\ARMCC\Bin\..\include\stdint.h
-.\objects\start_task.o: ..\CM3\system_stm32f10x.h
+.\objects\start_task.o: ..\User\system_stm32f10x.h
 .\objects\start_task.o: ..\User\stm32f10x_conf.h
 .\objects\start_task.o: ..\Libraries\stm32f10x_adc.h
 .\objects\start_task.o: ..\CM3\stm32f10x.h
@@ -32,4 +32,7 @@
 .\objects\start_task.o: ..\FreeRTOS\include\mpu_wrappers.h
 .\objects\start_task.o: ..\FreeRTOS\include\task.h
 .\objects\start_task.o: ..\FreeRTOS\include\list.h
-.\objects\start_task.o: ..\User\tim.h
+.\objects\start_task.o: ..\Task\start_task.h
+.\objects\start_task.o: ..\MyLib\delay.h
+.\objects\start_task.o: ..\User\main.h
+.\objects\start_task.o: ..\MyLib\tim.h

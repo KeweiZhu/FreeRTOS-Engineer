@@ -5,7 +5,7 @@
 .\objects\croutine.o: ..\User\FreeRTOSConfig.h
 .\objects\croutine.o: ..\CM3\stm32f10x.h
 .\objects\croutine.o: ..\CM3\core_cm3.h
-.\objects\croutine.o: ..\CM3\system_stm32f10x.h
+.\objects\croutine.o: ..\User\system_stm32f10x.h
 .\objects\croutine.o: ..\User\stm32f10x_conf.h
 .\objects\croutine.o: ..\Libraries\stm32f10x_adc.h
 .\objects\croutine.o: ..\CM3\stm32f10x.h
