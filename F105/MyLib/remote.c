@@ -1,7 +1,8 @@
 #include "remote.h"
 
 rc_ctrl_t rc_ctrl, rc_ctrl_last;
-
+short ctrl_rising_flag,shift_rising_flag,v_rising_flag,c_rising_flag,e_rising_flag,x_rising_flag,Press_Key_x_Flag,v_rising_flag;
+short f_rising_flag,mouse_Press_r_rising_flag,r_rising_flag,z_rising_flag,Press_Key_z_Flag,g_rising_flag;
 /**
   * @brief  discoding message
   * @param  
@@ -38,6 +39,10 @@ void remote_receive(volatile unsigned char rx_buffer[])
 	rc_ctrl.key.c = (rx_buffer[15]>>5)&0x01;
 	rc_ctrl.key.v = (rx_buffer[15]>>6)&0x01;
 	rc_ctrl.key.b = (rx_buffer[15]>>7)&0x01;
+	
+	key_rising_check();
+	key_refresh();
+	
 	
 	g_flag.rc_cnt = 0;
 	g_flag.rc_connect = 1;
@@ -83,11 +88,6 @@ void rc_reset(void)
   * @param  None
   * @retval None
   */
-/**
-  * @brief  改变状态，用于检测拨杆，更新状态机初始状态
-  * @param  None
-  * @retval None
-  */
 void key_refresh(void)
 {
 	rc_ctrl_last.rc.s1 = rc_ctrl.rc.s1;				
@@ -106,5 +106,12 @@ void key_refresh(void)
 	rc_ctrl_last.key.r = rc_ctrl.key.r;
 	rc_ctrl_last.key.w = rc_ctrl.key.w;
 	rc_ctrl_last.key.v = rc_ctrl.key.v;
+}
+
+void key_rising_check(void)
+{
+	g_rising_flag = rc_ctrl.key.g - rc_ctrl_last.key.g;
+	ctrl_rising_flag = rc_ctrl.key.ctrl - rc_ctrl_last.key.ctrl;
+	shift_rising_flag = rc_ctrl.key.shift - rc_ctrl_last.key.shift;
 }
 

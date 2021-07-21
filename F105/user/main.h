@@ -58,6 +58,11 @@
 #define SENIOR_MODE2					0X08		//上层模式2
 #define SENIOR_MODE3					0X09		//上层模式3
 
+//拨杆位置
+#define UP 		 	1
+#define MIDDLE 	3
+#define DOWN   	2
+
 //#define RC_MODE     		0X01		//遥控模式
 //#define KEY_MODE    		0X02		//键鼠模式
 //#define GET_BULLET_MODE 	0X03		//自动取弹模式

@@ -50,7 +50,6 @@ void chassis_vel_pid_init(float p, float i, float d, float i_max)
   */
 void chassis_power_off(void)
 {
-	g_flag.control_target = CHASSIS_MODE;
 	chassis_current_send(0, 0, 0, 0);
 }
 
@@ -92,14 +91,13 @@ void chassis_cal(int vx, int vy, int vw)
   */
 void chassis_task(void)
 {  
-	if(g_flag.control_mode == POWER_OFF_MODE)
+	if(g_flag.control_target == POWER_OFF_MODE)
 	{
 		chassis_power_off();
 	}
 	else if(g_flag.control_target == CHASSIS_MODE || g_flag.control_target == CHASSIS_MODE_STATIC)
 	{
-		g_flag.gyro_use_flag = 0;
-		if (g_flag.control_mode == RC_MODE)         //处于遥控模式，控制底盘及补弹气缸||g_flag.control_mode == LIFT_UP_MODE||g_flag.control_mode == SAVE_MODE
+		if (g_flag.control_mode == RC_MODE)         //处于遥控模式
 		{
 			if (rc_ctrl.rc.ch0 > 1044 || rc_ctrl.rc.ch0 < 1004)
 				vx = (1024 - rc_ctrl.rc.ch0) * 10.0f;
@@ -120,6 +118,27 @@ void chassis_task(void)
 			}
 			else 
 				vw = 0;
+		}
+		//键鼠控制
+		else if(g_flag.control_mode == KEY_MODE)
+		{
+			
+			if (g_flag.gyro_use_flag)	//使用陀螺仪数据
+			{
+				vx = (rc_ctrl.key.a - rc_ctrl.key.d) * (1.0F - rc_ctrl.key.shift * 0.56F+ rc_ctrl.mouse.press_l * 2.0f ) * 1500.0F;
+				vy = (-rc_ctrl.key.w + rc_ctrl.key.s) * (1.0F - rc_ctrl.key.shift * 0.56F+ rc_ctrl.mouse.press_l * 2.0f ) * 2000.0F;
+				chassis_pos_follow_pid.SetPoint -= rc_ctrl.mouse.x / 300.0f * (1.0F - rc_ctrl.key.shift * 0.56F);    //键鼠
+				//chassis_pos_follow_pid.SetPoint += (rc_ctrl.mouse.press_l - rc_ctrl.mouse.press_r)*0.02 * (1.0F - rc_ctrl.key.shift * 0.7F);    //键鼠
+			}
+			else	
+			{			//不使用陀螺仪数据
+				vx = (rc_ctrl.key.a - rc_ctrl.key.d) * (1.0F - rc_ctrl.key.shift * 0.56F ) * 2500.0F;
+				vy = (-rc_ctrl.key.w + rc_ctrl.key.s) * (1.0F - rc_ctrl.key.shift * 0.56F ) * 2500.0F;
+				//vw = -rc_ctrl.mouse.x * 100.0f * (1.0F - rc_ctrl.key.shift * 0.7F);
+				//chassis_pos_follow_pid.SetPoint = get_yaw_angle();
+				vw = (rc_ctrl.mouse.press_l - rc_ctrl.mouse.press_r)*1500.0f*(1.0f - rc_ctrl.key.shift * 0.56F);
+			}
+
 		}
 //		else if(g_flag.control_mode == LIFT_UP_MODE)
 //		{
@@ -180,69 +199,13 @@ void chassis_task(void)
 				vy_set = vy + 0.02f * (vy - vy_set);
 			else
 				vy_set = vy;
-		}else if(g_flag.control_target == CHASSIS_MODE_STATIC)												//底盘静步模式
+		}else if(g_flag.control_target == CHASSIS_MODE_STATIC)												//底盘静步模式（缓慢加速，快速刹车）
 		{
-			if(vw > 0)
-			{
-				if(vw > vw_set)																										//启动时减速，停止时快速刹车
-					vw_set = vw - 0.999f * (vw - vw_set);
-				else
-					vw_set = vw - 0.9f   * (vw - vw_set);
-			}else
-			{
-				if(vw < vw_set)																										//启动时减速，停止时快速刹车
-					vw_set = vw - 0.999f * (vw - vw_set);
-				else
-					vw_set = vw - 0.9f   * (vw - vw_set);
-			}
-			
-			if(vx > 0)
-			{
-				if(vx > vx_set)																										//启动时减速，停止时快速刹车
-					vx_set = vx - 0.999f * (vx - vx_set);
-				else
-					vx_set = vx - 0.9f   * (vx - vx_set);
-			}else
-			{
-				if(vx < vx_set)																										//启动时减速，停止时快速刹车
-					vx_set = vx - 0.999f * (vx - vx_set);
-				else
-					vx_set = vx - 0.9f   * (vx - vx_set);
-			}			
-			
-			if(vy > 0)
-			{
-				if(vy > vy_set)																										//启动时减速，停止时快速刹车
-					vy_set = vy - 0.999f * (vy - vy_set);
-				else
-					vy_set = vy - 0.9f   * (vy - vy_set);
-			}else
-			{
-				if(vy < vy_set)																										//启动时减速，停止时快速刹车
-					vy_set = vy - 0.999f * (vy - vy_set);
-				else
-					vy_set = vy - 0.9f   * (vy - vy_set);
-			}
-//			
-//			if(vw > vw_set)
-//				vw_set = vw - 0.999f * (vw - vw_set);														//启动时减速，停止时快速刹车
-//			else
-//				vw_set = vw - 0.9f   * (vw - vw_set);
-//			
-//			if(vx > vx_set)																										//启动时减速，停止时快速刹车
-//				vx_set = vx - 0.999f * (vx - vx_set);
-//			else
-//				vx_set = vx - 0.9f   * (vx - vx_set);
-//			
-//			if(vy > vy_set)
-//				vy_set = vy - 0.999f * (vy - vy_set);
-//			else
-//				vy_set = vy - 0.9f   * (vy - vy_set);
-//			
-																
+			vw_set = Chassis_mode_static(vw, vw_set);
+			vx_set = Chassis_mode_static(vx, vx_set);
+			vy_set = Chassis_mode_static(vy, vy_set);
 		}
 		
-
 		chassis_cal(vx_set, vy_set, vw_set);	
 	}
 }
@@ -292,4 +255,30 @@ void  Chassis_task(void *pvParameters)
         Chassis_high_water = uxTaskGetStackHighWaterMark(NULL);
 		#endif
     }
+}
+
+/**
+  * @brief  底盘静步模式速度计算   （缓慢加速，快速刹车）
+	* @param  v:预期速度,v_set:目前速度
+	* @retval v_set:返回目前速度以赋值
+  */	
+int Chassis_mode_static(int v, int v_set)
+{
+	if(v > 0)
+	{
+		if(v > v_set)	
+			v_set = v - 0.999f * (v - v_set);
+		else
+			v_set = v - 0.9f   * (v - v_set);
+	}else if(v < 0)
+	{
+		if(v < v_set)	
+			v_set = v - 0.999f * (v - v_set);
+		else
+			v_set = v - 0.9f   * (v - v_set);
+	}else 
+	{
+		v_set = v - 0.9f   * (v - v_set);
+	}
+	return v_set;
 }

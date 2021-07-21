@@ -10,4 +10,5 @@ void all_move(int vx, int vy);
 void w_offset(float speed);
 void w_turn(float speed);
 void Chassis_task(void *pvParameters);
+int  Chassis_mode_static(int v, int v_set);			//静步模式速度计算
 #endif

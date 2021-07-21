@@ -41,8 +41,8 @@ void UART4_Configuration(void)
 	USART_DMACmd(UART4, USART_DMAReq_Rx, ENABLE); 
 	
 	nvic.NVIC_IRQChannel = DMA2_Channel3_IRQn;
-	nvic.NVIC_IRQChannelPreemptionPriority = 1;
-	nvic.NVIC_IRQChannelSubPriority = 0;
+	nvic.NVIC_IRQChannelPreemptionPriority = 8;
+	nvic.NVIC_IRQChannelSubPriority = 1;
 	nvic.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&nvic);
 	
@@ -71,8 +71,8 @@ void UART4_Configuration(void)
 	}
   
     nvic.NVIC_IRQChannel = DMA2_Channel5_IRQn;
-		nvic.NVIC_IRQChannelPreemptionPriority = 3;
-		nvic.NVIC_IRQChannelSubPriority = 3;
+		nvic.NVIC_IRQChannelPreemptionPriority = 7;
+		nvic.NVIC_IRQChannelSubPriority = 1;
 		nvic.NVIC_IRQChannelCmd = ENABLE;
 		NVIC_Init(&nvic);
 		USART_DMACmd(UART4,USART_DMAReq_Tx,ENABLE);

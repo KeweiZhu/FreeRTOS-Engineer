@@ -21,6 +21,10 @@ typedef struct
 
 u8 offline_detect(void);
 void switch_mode(void);
+void Control_State_Get(void);
+void Motion_Target_Get(void);
+
+
 void  key_control_Init(void);
 void Mode_Switch_task(void *pvParameters);
 void  Offline_Check_task(void *pvParameters);

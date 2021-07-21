@@ -97,50 +97,9 @@ void  Offline_Check_task(void *pvParameters)
 void switch_mode(void)
 {
 	
-	if (rc_ctrl.rc.s2 == 2)															//控制模式
-	{
+		Control_State_Get();
+		Motion_Target_Get();																	//获取运动模式
 		
-		if (rc_ctrl.rc.s1 == 1)									//遥控模式
-			g_flag.control_mode = RC_MODE;
-		
-		else if (rc_ctrl.rc.s1 == 3)						//键鼠模式
-			g_flag.control_mode = KEY_MODE;
-		
-		else if (rc_ctrl.rc.s1 == 2)						//掉电模式
-		{
-			g_flag.control_mode = POWER_OFF_MODE;
-		}
-		
-	}
-	
-	else if (rc_ctrl.rc.s2 == 3)												//底盘模式
-	{
-		
-		if (rc_ctrl.rc.s1 == 1)									//底盘运动模式
-			g_flag.control_target = CHASSIS_MODE;
-		
-		else if (rc_ctrl.rc.s1 == 3)						//底盘静步模式
-			g_flag.control_target = CHASSIS_MODE_STATIC;
-		
-		else if (rc_ctrl.rc.s1 == 2)						//底盘模式3
-			g_flag.control_target = CHASSIS_MODE3;
-		
-	}
-	
-	else if (rc_ctrl.rc.s2 == 1)												//上层模式
-	{
-		
-		if (rc_ctrl.rc.s1 == 1)									//上层抬升模式
-			g_flag.control_target = SENIOR_UP_MODE;
-		
-		else if (rc_ctrl.rc.s1 == 3)						//上层模式2
-			g_flag.control_target = SENIOR_MODE2;
-		
-		else if (rc_ctrl.rc.s1 == 2)						//上层模式3
-			g_flag.control_target = SENIOR_MODE3;
-		
-	}
-	
 //	if (rc_ctrl.rc.s1 == 2)            
 //	{
 //		      
@@ -314,6 +273,107 @@ void switch_mode(void)
 //				}
 				
 }
+
+void Control_State_Get(void)															//获取控制模式
+{
+	if (rc_ctrl.rc.s2 == DOWN)															//获取控制模式
+	{
+		switch(rc_ctrl.rc.s1)
+		{
+			case UP:
+				g_flag.control_mode = RC_MODE;				//遥控模式
+				break;
+			case MIDDLE:
+				g_flag.control_mode = KEY_MODE;				//键鼠模式
+				break;
+			case DOWN:
+				g_flag.control_target = POWER_OFF_MODE;	//掉电模式
+				break;
+			default:
+				break;
+		}
+	}
+}
+
+void Motion_Target_Get(void)															//获取运动模式		
+{
+	if(g_flag.control_mode == RC_MODE)				//遥控器模式
+	{
+		if (rc_ctrl.rc.s2 == MIDDLE)			//底盘模式
+		{
+			switch(rc_ctrl.rc.s1)
+			{
+				case UP:						//正常底盘运动
+					g_flag.control_target = CHASSIS_MODE;	
+					break;
+				case MIDDLE:				//底盘静步模式
+					g_flag.control_target = CHASSIS_MODE_STATIC;
+					break;
+				case DOWN:					//底盘模式3
+					g_flag.control_target = CHASSIS_MODE3;
+					break;
+				default:
+					break;
+			}			
+		}
+		
+		else if (rc_ctrl.rc.s2 == UP)			//上层模式
+		{
+			switch(rc_ctrl.rc.s1)
+			{
+				case UP:						//上层抬升模式
+					g_flag.control_target = SENIOR_UP_MODE;
+					break;
+				case MIDDLE:				//上层模式2
+					g_flag.control_target = SENIOR_MODE2;
+					break;
+				case DOWN:					//上层模式3
+					g_flag.control_target = SENIOR_MODE3;
+					break;
+				default:
+					break;
+			}						
+		}
+	}else if (g_flag.control_mode == KEY_MODE)	//键鼠模式
+	{
+		//掉电模式
+		if(rc_ctrl.key.ctrl == 1 && rc_ctrl.key.b == 1)
+		{
+			g_flag.control_target = POWER_OFF_MODE;
+		}
+		
+		//底盘模式
+		if(rc_ctrl.key.ctrl == 1 && rc_ctrl.key.z == 1)
+		{
+			g_flag.control_target = CHASSIS_MODE;
+		}
+		if(rc_ctrl.key.ctrl == 1 && rc_ctrl.key.x == 1)
+		{
+			g_flag.control_target = CHASSIS_MODE_STATIC;
+		}
+		if(rc_ctrl.key.ctrl == 1 && rc_ctrl.key.c == 1)
+		{
+			g_flag.control_target = CHASSIS_MODE3;
+		}
+		
+		//上层模式
+		if(rc_ctrl.key.ctrl == 1 && rc_ctrl.key.q == 1)
+		{
+			g_flag.control_target = SENIOR_UP_MODE;
+		}
+		if(rc_ctrl.key.ctrl == 1 && rc_ctrl.key.e == 1)
+		{
+			g_flag.control_target = SENIOR_MODE2;
+		}
+		if(rc_ctrl.key.ctrl == 1 && rc_ctrl.key.r == 1)
+		{
+			g_flag.control_target = SENIOR_MODE3;
+		}
+		
+	}
+}
+
+
 
 void  key_control_Init(void)
 {

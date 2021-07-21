@@ -31,6 +31,7 @@ typedef struct{
 void remote_receive(volatile unsigned char rx_buffer[]);
 void rc_reset(void);
 void key_refresh(void);
+void key_rising_check(void);
 
 extern rc_ctrl_t rc_ctrl, rc_ctrl_last;
 
